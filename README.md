@@ -1,9 +1,7 @@
-# sluzby3
-sluzby 3.0
+#sluzby 3.0
+Web Appliaction for overtime planning for hospital employees. It is a port from previous two versions which were written as desktop Swing application.
 
-Web Appliaction for overtime planning for hospital employees
-
-Required features
+##Required features
 - single user (one user obtains overtime preferences from employees and creates full shedule in this webapp)
 - semi-automatic shedule creation
   -best effort algorithm fills days that were not prefered by any employee
@@ -16,9 +14,11 @@ Required features
 - backup and view of past shedules
 
 
-Used technologies
+##Used technologies
 - Spring
 - Maven
 - Angular 2.0
 - bootstrap
 - finished app is expected to run on latest JBoss server
+
+
