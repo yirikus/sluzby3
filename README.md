@@ -1,4 +1,7 @@
 #sluzby 3.0
+
+*Note that app is under heavy development and is far from completion*
+
 Web Appliaction for overtime planning for hospital employees. It is a port from previous two versions which were written as desktop Swing application.
 
 ##Required features
