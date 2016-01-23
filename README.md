@@ -1,0 +1,16 @@
+# sluzby3
+sluzby 3.0
+
+Web Appliaction for overtime planning for hospital employees
+
+Required features
+- single user (one user obtains overtime preferences from employees and creates full shedule in this webapp)
+- semi-automatic shedule creation
+--best effort algorithm fills days that were not prefered by any employee
+--distribution of days should be balanced within one month(least amount of weekend days, overtime days should be as far as possible, never right after previous day)
+--user can make manual adjustments
+- export to printable document
+- persistent employee management
+- There are two group of employees (junior and senior, as one senior and one junior employee is required to serve together on one day)
+- basic statistics
+- backup and view of past shedules
