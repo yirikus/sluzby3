@@ -1,0 +1,9 @@
+<servlet>
+   <servlet-name>Sluzby</servlet-name>
+   <servlet-class>Sluzby</servlet-class>
+</servlet>
+
+<servlet-mapping>
+   <servlet-name>Sluzby</servlet-name>
+   <url-pattern>/sluzby</url-pattern>
+</servlet-mapping>
