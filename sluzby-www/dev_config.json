@@ -1,0 +1,6 @@
+{
+    "configName": "development",
+    "indexPath": "public/index.htm",
+    "port": 9000,
+    "staticFolder": "/public"      
+}

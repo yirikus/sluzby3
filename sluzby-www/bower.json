@@ -1,0 +1,19 @@
+{
+  "name": "sluzby-www",
+  "description": "frontend",
+  "main": "server.js",
+  "authors": [
+    "Jiri Kus"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
