@@ -1,0 +1,16 @@
+<table *ngIf="schedule">
+  <thead>
+    <tr>
+      <th>datum</th>
+      <th>Svátek</th>
+      <th *ngFor="#group of schedule.groups">{{group.name}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="#day of schedule.days">
+      <td>{{day.day}}.{{day.month}}.{{day.year}}</td>
+      <td><input type="checkbox" [(ngModel)]="day.holiday" /></td>
+      <td *ngFor="#group of day.groups"><select></select></td>
+    </tr>
+  </tbody>
+</table>
