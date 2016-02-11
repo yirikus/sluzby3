@@ -8,6 +8,7 @@ import { WorkGroup} from '../model/WorkGroup';
 @Injectable()
 export class SchedulerService {
   schedule: Schedule;
+  groupId=1;
 
   initSchedule(){
     this.schedule = {
@@ -15,18 +16,9 @@ export class SchedulerService {
      'persons': [],
      'groups': []
      }
-     this.addGroup({
-       'groupId': 1,
-       'name': 'Interna - mladší'
-     });
-     this.addGroup({
-       'groupId': 2,
-       'name': 'Interna - starší'
-     });
-     this.addGroup({
-       'groupId': 3,
-       'name': 'Dialýza'
-     });
+     this.addGroup('Interna - mladší');
+     this.addGroup('Interna - starší');
+     this.addGroup('Dialýza');
      this.addDays();
   }
 
@@ -38,32 +30,70 @@ export class SchedulerService {
     return Promise.resolve(this.schedule);
   }
 
-  addPerson(person){
-    this.schedule.groups.push(person);
+  getWorkGroups(){
+    if (!this.schedule) {
+      this.initSchedule();
+    }
+
+    return Promise.resolve(this.schedule.groups);
   }
 
-  addGroup(group){
+  addPerson(person){
+    this.schedule.groups.push(person);
+    return Promise.resolve(null);
+  }
+
+/**
+  * Adds a group to the Schedule
+  * @param name name of the new group
+  */
+  addGroup(name: string){
+    let group: WorkGroup = {
+      'groupId': ++this.groupId,
+      'name': name
+    };
     this.schedule.groups.push(group);
+    this.updateDays();
+    return Promise.resolve(group);
+  }
+
+  containsGroup(day: ScheduledDay, id: number){
+    for (let g: number = 0; g < day.groups.length; g++) {
+      let group = day.groups[g];
+      if (group.groupId === id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  updateDays(){
+    for (let i = 0; i < this.schedule.days.length; i++) {
+      let day = this.schedule.days[i];
+      for (let g = 0; g < this.schedule.groups.length; g++) {
+        let group = this.schedule.groups[g];
+        if (!this.containsGroup(day, group.groupId)) {
+          let scheduledGroup: ScheduledGroup ={
+              'doctorId': null,
+              'groupId': group.groupId
+          };
+          day.groups.push(scheduledGroup);
+        }
+      }
+    }
   }
 
   addDays(){
     for(let i = 0; i < 30; i++) {
-      let groups: ScheduledGroup[] = [];
-      for (let j = 0; j < this.schedule.groups.length; j++) {
-          let scheduledGroup: ScheduledGroup ={
-              'doctorId': null,
-              'groupId': this.schedule.groups[j].groupId
-          };
-          groups.push(scheduledGroup);
-      }
       let day: ScheduledDay = {
           'day': (i + 1),
           'month': 2,
           'year': 2016,
           'holiday': false,
-          'groups': groups
+          'groups': []
       };
       this.schedule.days.push(day);
     }
+    this.updateDays();
   }
 }

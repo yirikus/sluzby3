@@ -1,0 +1,18 @@
+<table *ngIf="schedule">
+  <thead>
+    <tr>
+      <th>Jméno</th>
+      <th>Příjmení</th>
+      <th *ngFor="#group of schedule.groups">{{group.name}}</th>
+      <th>Požadavky</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="#person of schedule.persons">
+      <td>{{person.firstName}}</td>
+      <td>{{person.surname}}</td>
+      <td *ngFor="#group of schedule.groups"><input type="checkbox"></td>
+      <td>...</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,11 +1,22 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
+
+import { Schedule} from '../../model/Schedule';
+
+import { SchedulerService} from '../../services/scheduler.service';
+
 
 @Component({
   selector: 'doctors',
-  template: `<h1>{{title}}</h1>
-            `
+  templateUrl: 'app/components/doctors/doctors.component.html'
 })
-export class DoctorsComponent {
-  public title: string = 'doctors';
+export class DoctorsComponent implements OnInit{
+  constructor(private _schedulerService: SchedulerService) { }
+  
+  public title: string = 'Lékaři';
+  public schedule: Schedule;
 
+  ngOnInit() {
+    this._schedulerService.getSchedule()
+         .then(schedule => this.schedule = schedule);
+  }
 }

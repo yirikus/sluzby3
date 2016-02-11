@@ -4,6 +4,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 import { DoctorsComponent} from '../doctors/doctors.component';
 import { ScheduleComponent} from '../schedule/schedule.component';
 import { StatsComponent} from '../stats/stats.component';
+import { WorkGroupComponent} from '../work-groups/work-group.component';
 import { SchedulerService} from '../../services/scheduler.service';
 
 @Component({
@@ -12,9 +13,10 @@ import { SchedulerService} from '../../services/scheduler.service';
   providers:[SchedulerService,ROUTER_PROVIDERS],
   template: `<h1>{{title}}</h1>
             <nav>
-               <a [routerLink]="['Schedule']">Calendar</a>
-               <a [routerLink]="['Stats']">Stats</a>
-               <a [routerLink]="['Doctors']">Doctors</a>
+               <a [routerLink]="['Schedule']">Kalendář</a>
+               <a [routerLink]="['Stats']">Statistiky</a>
+               <a [routerLink]="['Doctors']">Lékaři</a>
+               <a [routerLink]="['WorkGroups']">Skupiny</a>
             </nav>
             <router-outlet></router-outlet>
             `
@@ -34,6 +36,11 @@ import { SchedulerService} from '../../services/scheduler.service';
   path: '/stats',
   name: 'Stats',
   component: StatsComponent
+},
+{
+  path: '/work-groups',
+  name: 'WorkGroups',
+  component: WorkGroupComponent
 }
 
 ])
